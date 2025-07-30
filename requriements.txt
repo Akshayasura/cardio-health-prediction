@@ -1,8 +1,6 @@
-
- requirements used:
-
-pandas
-numpy
+streamlit
 scikit-learn
+pandas
 matplotlib
-seaborn
+numpy
+joblib
