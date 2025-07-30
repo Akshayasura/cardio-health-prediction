@@ -45,4 +45,9 @@ if submit:
         prediction = model.predict(input_data)[0]
 
         if prediction == 1:
-            st.error("⚠ High risk of heart
+            st.error("⚠ High risk of heart disease. Please consult a doctor.")
+        else:
+            st.success("✅ Heart condition appears normal.")
+    
+    except Exception as e:
+        st.error(f"❌ Error during prediction: {e}")
