@@ -3,7 +3,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Cardio Health Prediction", layout="centered")
 
-st.title("Cardiovascular Health Prediction")
+st.title("🫀 Cardiovascular Health Prediction")
 st.write("Fill in the details below to predict your heart condition.")
 
 # User input form
@@ -25,10 +25,24 @@ with st.form("input_form"):
     submit = st.form_submit_button("Predict")
 
 if submit:
-    # Load the model only when needed
     try:
         import joblib
         model = joblib.load("model.pkl")
 
-        # Encode sex to match training
-        sex_encoded = 1
+        # Encode sex to numeric
+        sex_encoded = 1 if sex == "Male" else 0
+
+        # Input DataFrame
+        input_data = pd.DataFrame([[
+            age, sex_encoded, cp, trestbps, chol, fbs, restecg,
+            thalach, exang, oldpeak, slope, ca, thal
+        ]], columns=[
+            "age", "sex", "cp", "trestbps", "chol", "fbs", "restecg",
+            "thalach", "exang", "oldpeak", "slope", "ca", "thal"
+        ])
+
+        # Predict
+        prediction = model.predict(input_data)[0]
+
+        if prediction == 1:
+            st.error("⚠ High risk of heart
