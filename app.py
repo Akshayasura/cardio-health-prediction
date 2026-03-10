@@ -43,3 +43,4 @@ if st.button("Predict"):
         st.error("High risk of cardiovascular disease")
     else:
         st.success("Low risk of cardiovascular disease")
+
